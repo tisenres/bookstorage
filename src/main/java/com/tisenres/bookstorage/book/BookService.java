@@ -3,6 +3,7 @@ package com.tisenres.bookstorage.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -36,24 +37,31 @@ public class BookService {
         return bookRepository.findBooksByAuthor(author);
     }
 
-    public Map<String, Integer> getAuthorsBySymbol(String symbol) {
-
+    public Map<String, Integer> getAuthorsBySymbol(String symbol, int limit) {
         List<String> authors = bookRepository.findDistinctAuthors();
 
-        Map<String, Integer> collect = authors.stream()
-                .collect(Collectors.toMap(author -> author, bookRepository::findBooksByAuthor))
-                .entrySet()
-                .stream()
+        Map<String, Integer> authorsBySymbolsCounter = authors.stream()
                 .collect(Collectors.toMap(
-                                Map.Entry::getKey,
-                                entry -> entry.getValue().stream().map(
-                                                book -> book.getTitle().length() - book.getTitle().replace(symbol, "").length())
+                                author -> author,
+                                author -> bookRepository.findBooksByAuthor(author)
+                                        .stream()
+                                        .map(book -> book.getTitle().length() - book.getTitle().replace(symbol, "").length())
                                         .reduce(0, Integer::sum)
                         )
                 );
+        return getAuthorsBySymbolTop(authorsBySymbolsCounter, limit);
+    }
 
-//        collect.forEach((key, value) -> System.out.println(key + " " + value));
-
-        return collect;
+    public Map<String, Integer> getAuthorsBySymbolTop(Map<String, Integer> authorsBySymbolsCounter, int limit) {
+        Map<String, Integer> authorsBySymbolsTop = authorsBySymbolsCounter.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .limit(limit)
+                .collect(
+                        Collectors.toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue
+                        )
+                );
+        return authorsBySymbolsTop;
     }
 }

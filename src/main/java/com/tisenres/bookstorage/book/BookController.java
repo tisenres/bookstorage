@@ -22,14 +22,15 @@ public class BookController {
         return bookService.getBooks();
     }
 
-    @GetMapping(path ="/books-by-author")
+    @GetMapping(path = "/books-by-author")
     public List<Book> getBooksByAuthor(@RequestParam("author") String author) {
         return bookService.getBooksByAuthor(author);
     }
 
-    @GetMapping(path="/authors-by-symbol")
-    public Map<String, Integer> getAuthorsBySymbol(@RequestParam("symbol") String symbol) {
-        return bookService.getAuthorsBySymbol(symbol);
+    @GetMapping(path = "/authors-by-symbol")
+    public Map<String, Integer> getAuthorsBySymbol(@RequestParam("symbol") String symbol,
+                                                   @RequestParam("limit") int limit) {
+        return bookService.getAuthorsBySymbol(symbol, limit);
     }
 
     @PostMapping
