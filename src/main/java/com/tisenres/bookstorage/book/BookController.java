@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/book")
+@RequestMapping(path = "api/v1/books")
 public class BookController {
 
     private final BookService bookService;
@@ -21,7 +21,7 @@ public class BookController {
         return bookService.getBooks();
     }
 
-    @GetMapping(path ="/booksByAuthor")
+    @GetMapping(path ="/books-by-author")
     public List<Book> getBooksByAuthor(@RequestParam("author") String author) {
         return bookService.getBooksByAuthor(author);
     }
