@@ -37,10 +37,21 @@ public class BookService {
         return bookRepository.findBooksByAuthor(author);
     }
 
-    public Map<String, Integer> getAuthorsBySymbol(String symbol, int limit) {
+    public List<Author> getAuthorsBySymbol(String symbol, int limit) {
+        Map<String, Integer> allAuthorsBySymbol = getAllAuthorsBySymbol(symbol);
+        Map<String, Integer> limitedAuthorsBySymbol = getLimitedAuthorsBySymbol(allAuthorsBySymbol, limit);
+
+        return limitedAuthorsBySymbol
+                .entrySet()
+                .stream()
+                .map(entry -> new Author(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    public Map<String, Integer> getAllAuthorsBySymbol(String symbol) {
         List<String> authors = bookRepository.findDistinctAuthors();
 
-        Map<String, Integer> authorsBySymbolsCounter = authors.stream()
+        return authors.stream()
                 .collect(Collectors.toMap(
                                 author -> author,
                                 author -> bookRepository.findBooksByAuthor(author)
@@ -49,10 +60,9 @@ public class BookService {
                                         .reduce(0, Integer::sum)
                         )
                 );
-        return getAuthorsBySymbolAndByLimit(authorsBySymbolsCounter, limit);
     }
 
-    public Map<String, Integer> getAuthorsBySymbolAndByLimit(Map<String, Integer> authorsBySymbolsCounter, int limit) {
+    public Map<String, Integer> getLimitedAuthorsBySymbol(Map<String, Integer> authorsBySymbolsCounter, int limit) {
         return authorsBySymbolsCounter.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(limit)

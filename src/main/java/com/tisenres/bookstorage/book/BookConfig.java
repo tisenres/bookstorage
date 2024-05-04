@@ -29,8 +29,8 @@ public class BookConfig {
             );
 
             bookRepository.saveAll(List.of(
-                    book1, book2, book3, book4, book5
-                )
+                            book1, book2, book3, book4, book5
+                    )
             );
         };
     }
