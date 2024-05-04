@@ -15,10 +15,10 @@ This project is an API for storing books. It provides endpoints for retrieving b
 
 ### Request Examples
 
-#### Get all books
+#### Get all books in descending order
 
 ```http
-GET /api/v1/books
+GET /api/v1/books-desc
 ```
 
 #### Get books by author
@@ -30,7 +30,7 @@ GET /api/v1/books/books-by-author?author=AuthorName
 #### Get authors by symbol
 
 ```http
-GET /api/v1/books/authors-by-symbol?symbol=A&limit=5
+GET /api/v1/books/authors-by-symbol?symbol=a&limit=10
 ```
 
 #### Add a book
