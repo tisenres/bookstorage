@@ -26,6 +26,11 @@ public class BookController {
         return bookService.getBooksByAuthor(author);
     }
 
+    @GetMapping(path="/authors-by-symbol")
+    public List<String> getAuthorsBySymbol(@RequestParam("symbol") String symbol) {
+        return bookService.getAuthorsBySymbol(symbol);
+    }
+
     @PostMapping
     public void addBook(@RequestBody Book book) {
         bookService.addBook(book);
