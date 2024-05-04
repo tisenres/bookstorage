@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/books")
@@ -27,7 +28,7 @@ public class BookController {
     }
 
     @GetMapping(path="/authors-by-symbol")
-    public List<String> getAuthorsBySymbol(@RequestParam("symbol") String symbol) {
+    public Map<String, Integer> getAuthorsBySymbol(@RequestParam("symbol") String symbol) {
         return bookService.getAuthorsBySymbol(symbol);
     }
 
