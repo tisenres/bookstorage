@@ -49,10 +49,10 @@ public class BookService {
                                         .reduce(0, Integer::sum)
                         )
                 );
-        return getAuthorsBySymbolTop(authorsBySymbolsCounter, limit);
+        return getAuthorsBySymbolAndByLimit(authorsBySymbolsCounter, limit);
     }
 
-    public Map<String, Integer> getAuthorsBySymbolTop(Map<String, Integer> authorsBySymbolsCounter, int limit) {
+    public Map<String, Integer> getAuthorsBySymbolAndByLimit(Map<String, Integer> authorsBySymbolsCounter, int limit) {
         return authorsBySymbolsCounter.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(limit)
