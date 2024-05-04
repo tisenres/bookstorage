@@ -16,9 +16,9 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
-    public List<Book> getBooks() {
-        return bookService.getBooks();
+    @GetMapping(path = "/books-desc")
+    public List<Book> getBooksByDescendingOrder() {
+        return bookService.getBooksByDescendingOrder();
     }
 
     @GetMapping(path = "/books-by-author")
@@ -26,7 +26,7 @@ public class BookController {
         return bookService.getBooksByAuthor(author);
     }
 
-    @GetMapping(path = "/authors-by-symbol")
+    @GetMapping(path = "/authors-by-symbol-and-limit")
     public List<Author> getAuthorsBySymbol(@RequestParam("symbol") String symbol,
                                            @RequestParam("limit") int limit) {
         return bookService.getAuthorsBySymbol(symbol, limit);

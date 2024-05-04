@@ -19,8 +19,8 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> getBooks() {
-        return bookRepository.findAllInDescendingOrderOfTitle();
+    public List<Book> getBooksByDescendingOrder() {
+        return bookRepository.findAllInDescendingOfTitle();
     }
 
     public void addBook(Book book) {

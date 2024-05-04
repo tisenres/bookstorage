@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT book FROM Book book ORDER BY book.title DESC")
-    List<Book> findAllInDescendingOrderOfTitle();
+    List<Book> findAllInDescendingOfTitle();
 
     @Query("SELECT book FROM Book book WHERE book.title = ?1 AND book.author = ?2")
     Optional<Book> findStudentByTitleAndAuthor(String title, String author);
