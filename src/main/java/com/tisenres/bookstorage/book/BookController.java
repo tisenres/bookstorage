@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    private BookService bookService;
+    private final BookService bookService;
 
     @Autowired
     public BookController(BookService bookService) {
