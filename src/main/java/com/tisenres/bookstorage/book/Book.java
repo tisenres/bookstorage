@@ -28,6 +28,12 @@ public class Book {
         this.description = description;
     }
 
+    public Book(String title, String author, String description) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+    }
+
     public Book() {
 
     }
