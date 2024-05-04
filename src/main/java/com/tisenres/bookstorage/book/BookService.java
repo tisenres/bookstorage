@@ -45,7 +45,7 @@ public class BookService {
                                 author -> author,
                                 author -> bookRepository.findBooksByAuthor(author)
                                         .stream()
-                                        .map(book -> book.getTitle().length() - book.getTitle().replace(symbol, "").length())
+                                        .map(book -> book.getTitle().length() - book.getTitle().toLowerCase().replace(symbol.toLowerCase(), "").length())
                                         .reduce(0, Integer::sum)
                         )
                 );
