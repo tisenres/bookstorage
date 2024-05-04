@@ -8,7 +8,7 @@ This project is an API for storing books. It provides endpoints for retrieving b
 
 ### Endpoints
 
-- **GET /api/v1/books**: Get all books.
+- **GET /api/v1/books-desc**: Get all books in descending order.
 - **GET /api/v1/books/books-by-author?author={author}**: Get books by a specific author.
 - **GET /api/v1/books/authors-by-symbol?symbol={symbol}&limit={limit}**: Get authors by a specific symbol with a limit.
 - **POST /api/v1/books**: Add a new book.
