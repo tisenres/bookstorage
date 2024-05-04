@@ -53,7 +53,7 @@ public class BookService {
     }
 
     public Map<String, Integer> getAuthorsBySymbolTop(Map<String, Integer> authorsBySymbolsCounter, int limit) {
-        Map<String, Integer> authorsBySymbolsTop = authorsBySymbolsCounter.entrySet().stream()
+        return authorsBySymbolsCounter.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(limit)
                 .collect(
@@ -62,6 +62,5 @@ public class BookService {
                                 Map.Entry::getValue
                         )
                 );
-        return authorsBySymbolsTop;
     }
 }
