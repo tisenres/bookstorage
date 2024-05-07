@@ -13,4 +13,6 @@ public interface BookDAO {
     List<Book> findBooksByAuthor(String author);
 
     List<String> findDistinctAuthors();
+
+    boolean saveBook(Book book);
 }

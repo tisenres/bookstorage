@@ -4,11 +4,13 @@ import com.tisenres.bookstorage.features.book.model.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.tisenres.bookstorage.features.book.model.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class BookDAOImpl implements BookDAO {
 
     JdbcTemplate jdbcTemplate;
@@ -16,6 +18,7 @@ public class BookDAOImpl implements BookDAO {
     private final String SQL_FIND_BOOKS_BY_TITLE_DESC = "SELECT * FROM Book WHERE title = ? AND author = ?";
     private final String SQL_FIND_BOOKS_BY_AUTHOR = "SELECT * FROM Book WHERE author = ?";
     private final String SQL_FIND_AUTHORS_DISTINCT = "SELECT DISTINCT author FROM Book";
+    private final String SQL_INSERT_BOOK = "INSERT INTO Book(id, title, author, description) values(?,?,?,?)";
 
     @Autowired
     public BookDAOImpl(DataSource dataSource) {
@@ -45,5 +48,10 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public List<String> findDistinctAuthors() {
         return jdbcTemplate.queryForList(SQL_FIND_AUTHORS_DISTINCT, String.class);
+    }
+
+    @Override
+    public boolean saveBook(Book book) {
+        return jdbcTemplate.update(SQL_INSERT_BOOK, book.getId(), book.getTitle(), book.getAuthor(), book.getDescription()) > 0;
     }
 }
