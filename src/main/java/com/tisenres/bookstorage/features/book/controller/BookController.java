@@ -1,5 +1,8 @@
-package com.tisenres.bookstorage.book;
+package com.tisenres.bookstorage.features.book.controller;
 
+import com.tisenres.bookstorage.features.book.service.BookService;
+import com.tisenres.bookstorage.features.book.model.Author;
+import com.tisenres.bookstorage.features.book.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

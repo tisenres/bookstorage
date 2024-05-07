@@ -1,5 +1,6 @@
-package com.tisenres.bookstorage.book;
+package com.tisenres.bookstorage.features.book.repository;
 
+import com.tisenres.bookstorage.features.book.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

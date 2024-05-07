@@ -1,0 +1,85 @@
+package com.tisenres.bookstorage.features.book.model;
+
+import jakarta.persistence.*;
+
+import java.util.Objects;
+
+@Table
+@Entity
+public class Book {
+    @Id
+    @SequenceGenerator(
+            name = "book_sequence",
+            sequenceName = "book_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "book_sequence")
+    private Long id;
+    private String title;
+    private String author;
+    @Transient
+    private String description;
+
+    public Book(Long id, String title, String author, String description) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.description = description;
+    }
+
+    public Book(String title, String author, String description) {
+        this.title = title;
+        this.author = author;
+        this.description = description;
+    }
+
+    public Book() {
+
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(title, book.title) && Objects.equals(author, book.author) && Objects.equals(description, book.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, description);
+    }
+}
