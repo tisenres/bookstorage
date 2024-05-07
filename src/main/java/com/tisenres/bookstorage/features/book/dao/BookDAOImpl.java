@@ -14,11 +14,12 @@ import java.util.Optional;
 public class BookDAOImpl implements BookDAO {
 
     JdbcTemplate jdbcTemplate;
-    private final String SQL_FIND_BOOKS_DESC = "SELECT * FROM Book ORDER BY title DESC";
-    private final String SQL_FIND_BOOKS_BY_TITLE_DESC = "SELECT * FROM Book WHERE title = ? AND author = ?";
-    private final String SQL_FIND_BOOKS_BY_AUTHOR = "SELECT * FROM Book WHERE author = ?";
-    private final String SQL_FIND_AUTHORS_DISTINCT = "SELECT DISTINCT author FROM Book";
-    private final String SQL_INSERT_BOOK = "INSERT INTO Book(id, title, author, description) values(?,?,?,?)";
+
+    private final String SQL_FIND_BOOKS_DESC = "SELECT * FROM book ORDER BY title DESC";
+    private final String SQL_FIND_BOOKS_BY_TITLE_DESC = "SELECT * FROM book WHERE title = ? AND author = ?";
+    private final String SQL_FIND_BOOKS_BY_AUTHOR = "SELECT * FROM book WHERE author = ?";
+    private final String SQL_FIND_AUTHORS_DISTINCT = "SELECT DISTINCT author FROM book";
+    private final String SQL_INSERT_BOOK = "INSERT INTO book(id, title, author, description) VALUES (?,?,?,?)";
 
     @Autowired
     public BookDAOImpl(DataSource dataSource) {
