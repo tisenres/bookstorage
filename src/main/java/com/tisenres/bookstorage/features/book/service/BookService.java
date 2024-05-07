@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class BookService {
 
-    private final BookRepository bookRepository;
+//    private final BookRepository bookRepository;
 
     @Autowired
     public BookService(BookRepository bookRepository) {
@@ -27,7 +27,7 @@ public class BookService {
     }
 
     public void addBook(Book book) {
-        Optional<Book> optionalBook = bookRepository.findStudentByTitleAndAuthor(
+        Optional<Book> optionalBook = bookRepository.findBookByTitleAndAuthor(
                 book.getTitle(), book.getAuthor()
         );
         if (optionalBook.isPresent()) {

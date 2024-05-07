@@ -15,7 +15,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findAllInDescendingOfTitle();
 
     @Query("SELECT book FROM Book book WHERE book.title = ?1 AND book.author = ?2")
-    Optional<Book> findStudentByTitleAndAuthor(String title, String author);
+    Optional<Book> findBookByTitleAndAuthor(String title, String author);
 
     @Query("SELECT book FROM Book book WHERE book.author = ?1")
     List<Book> findBooksByAuthor(String author);

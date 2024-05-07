@@ -1,41 +1,22 @@
 package com.tisenres.bookstorage.features.book.model;
 
-import jakarta.persistence.*;
-
 import java.util.Objects;
 
-@Table
-@Entity
 public class Book {
-    @Id
-    @SequenceGenerator(
-            name = "book_sequence",
-            sequenceName = "book_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "book_sequence")
     private Long id;
     private String title;
     private String author;
-    @Transient
     private String description;
+
+    public Book() {
+
+    }
 
     public Book(Long id, String title, String author, String description) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.description = description;
-    }
-
-    public Book(String title, String author, String description) {
-        this.title = title;
-        this.author = author;
-        this.description = description;
-    }
-
-    public Book() {
-
     }
 
     public void setId(Long id) {
