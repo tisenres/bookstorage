@@ -54,7 +54,8 @@ public class BookService {
     public Map<String, Integer> getAllAuthorsBySymbol(String symbol) {
         List<String> authors = bookDAO.findDistinctAuthors();
 
-        return authors.stream()
+        return authors
+                .stream()
                 .collect(Collectors.toMap(
                                 author -> author,
                                 author -> bookDAO.findBooksByAuthor(author)
@@ -66,7 +67,9 @@ public class BookService {
     }
 
     public Map<String, Integer> getLimitedAuthorsBySymbol(Map<String, Integer> authorsBySymbolsCounter, int limit) {
-        return authorsBySymbolsCounter.entrySet().stream()
+        return authorsBySymbolsCounter
+                .entrySet()
+                .stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(limit)
                 .collect(
