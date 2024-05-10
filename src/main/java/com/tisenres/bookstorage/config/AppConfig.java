@@ -2,6 +2,7 @@ package com.tisenres.bookstorage.config;
 
 import com.tisenres.bookstorage.features.book.dao.BookDAO;
 import com.tisenres.bookstorage.features.book.model.Book;
+import com.tisenres.bookstorage.features.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -37,27 +38,27 @@ public class AppConfig {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(BookDAO bookDAO) {
+    CommandLineRunner commandLineRunner(BookService service) {
         return args -> {
             Book book1 = new Book(
-                    0L, "Crime and Punishment", "F. Dostoevsky", null
+                    "Crime and Punishment", "F. Dostoevsky", null
             );
             Book book2 = new Book(
-                    1L, "Anna Karenina", "L. Tolstoy", null
+                    "Anna Karenina", "L. Tolstoy", null
             );
             Book book3 = new Book(
-                    2L, "The Brothers Karamazov", "F. Dostoevsky", null
+                     "The Brothers Karamazov", "F. Dostoevsky", null
             );
             Book book4 = new Book(
-                    3L, "War and Peace", "L. Tolstoy", null
+                     "War and Peace", "L. Tolstoy", null
             );
             Book book5 = new Book(
-                    4L, "Dead Souls", "N. Gogol", null
+                    "Dead Souls", "N. Gogol", null
             );
             List<Book> books = List.of(
                     book1, book2, book3, book4, book5
             );
-            books.forEach(bookDAO::saveBook);
+            books.forEach(service::addBook);
         };
     }
 }

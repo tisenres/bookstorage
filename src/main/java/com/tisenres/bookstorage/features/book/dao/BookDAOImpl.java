@@ -19,7 +19,7 @@ public class BookDAOImpl implements BookDAO {
     private final String SQL_FIND_BOOKS_BY_TITLE_DESC = "SELECT * FROM book WHERE title = ? AND author = ?";
     private final String SQL_FIND_BOOKS_BY_AUTHOR = "SELECT * FROM book WHERE author = ?";
     private final String SQL_FIND_AUTHORS_DISTINCT = "SELECT DISTINCT author FROM book";
-    private final String SQL_INSERT_BOOK = "INSERT INTO book(id, title, author, description) VALUES (?,?,?,?)";
+    private final String SQL_INSERT_BOOK = "INSERT INTO book(title, author, description) VALUES (?,?,?)";
 
     @Autowired
     public BookDAOImpl(DataSource dataSource) {
@@ -53,6 +53,6 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public boolean saveBook(Book book) {
-        return jdbcTemplate.update(SQL_INSERT_BOOK, book.getId(), book.getTitle(), book.getAuthor(), book.getDescription()) > 0;
+        return jdbcTemplate.update(SQL_INSERT_BOOK, book.getTitle(), book.getAuthor(), book.getDescription()) > 0;
     }
 }
