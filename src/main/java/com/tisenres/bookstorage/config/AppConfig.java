@@ -1,6 +1,5 @@
 package com.tisenres.bookstorage.config;
 
-import com.tisenres.bookstorage.features.book.dao.BookDAO;
 import com.tisenres.bookstorage.features.book.model.Book;
 import com.tisenres.bookstorage.features.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
