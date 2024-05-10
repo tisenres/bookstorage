@@ -1,4 +1,4 @@
-package com.tisenres.bookstorage.book;
+package com.tisenres.bookstorage.features.book.model;
 
 public class Author {
     private String authorName;
